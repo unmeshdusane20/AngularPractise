@@ -1,0 +1,28 @@
+<!--
+ng-include
+Author : Unmesh Dusane
+This directive used to include HTML fragment from other file into view's HTML temmplate
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<div ng-controller="SwitchController">
+   <div ng-include="'ng-if.html'"></div>
+
+    <!-- conditional fragment  -->
+    <div ng-include="myData.showIt && 'ng-switch.html' || 'ng-include.html'"></div>
+</div>
+<script type="text/javascript">
+    angular.module("myapp",[]).controller("SwitchController",function($scope){
+        $scope.myData = {};
+        $scope.myData.showIt = true;
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!--
+Author : Unmesh Dusane
+This file is used to demonstrate form validation directive
+ng-minlength + ng-maxlength
+If the vinput value is not between minlength and max length it will not copy value to scopr varibale
+
+ng-pattern - used to compare value with regular expresssion
+ng-required - same as requeired in html5
+
+Binding input filed to model property using ng-model directive
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+</head>
+<style type="text/css">
+    .validField {
+        border:1px solid #00ff00;
+    }.invalidField {
+        border:1px solid #ff0000;
+    }
+</style>
+<body ng-app="myapp">
+<div ng-controller="MyFormController">
+
+    <form name="myRegForm">
+    <h4>Please fill following form </h4>
+    First Name : <input type="text" name="fname" id="fname" data-ng-model="myForm.fname" ng-minlength="0" ng-class="myForm.getFormFieldCssClass(myRegForm.fname) "/><br>
+    <div ng-show="myRegForm.fname.$invalid">You must enter a valid name</div>
+     Last Name : <input type="text" id="lname" data-ng-model="myForm.lname" ng-pattern="/^\d+$/"/><br>
+        <span data-ng-bind="myForm.fname">{{ myForm.fname  }} </span>
+    <button data-ng-click="myForm.submitForm()">Submit</button>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    var myapp = angular.module("myapp",[]);
+    myapp.controller("MyFormController",function($scope,$http){
+        $scope.myForm={};
+        $scope.myForm.fname = 'Unmesh';
+        $scope.myForm.lname = '';
+        $scope.myForm.getFormFieldCssClass = function(ngModelController){
+            if(ngModelController.$pristine) return "";
+            return ngModelController.$valid ? "validField" : "invalidField"
+        };
+        $scope.myForm.submitForm = function(item,event){
+          console.log("submit form");
+          var dataObject = {
+              fname : $scope.myForm.fname,
+              lname: $scope.myForm.lname
+          }
+            console.log(dataObject.fname)
+           var responsePromise = $http.post("/ng-model-form.html",dataObject , {});
+            responsePromise.success(function(dataFromServer,status,header,config){
+                console.log("dataFromServer.title");
+            });
+            responsePromise.error(function(data,status,header,config){
+                console.log("failed");
+            });
+
+        };
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!--
+Author : Unmesh Dusane
+This file create custom directive
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<div ng-controller="SwitchController">
+    <div ng-include="'ng-if.html'"></div>
+
+    <!-- conditional fragment  -->
+    <div ng-include="myData.showIt && 'ng-switch.html' || 'ng-include.html'"></div>
+</div>
+<script type="text/javascript">
+   var myapp = angular.module("myapp",[]);
+    myapp.directive("div",function(){
+       var directive = {};
+        directive.restrict= 'E';
+        directive.template = "My template: {{ text }}";
+        return directive;
+   });
+</script>
+
+</body>
+</html>

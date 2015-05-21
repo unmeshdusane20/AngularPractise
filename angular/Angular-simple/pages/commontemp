@@ -1,0 +1,179 @@
+/**
+ * Created by ALTOUR on 5/7/15.
+ */
+
+
+Ext.define('DigitalApp.view.Common.CommonTemplates',{
+    singleton : true,
+    config:{
+        values:""
+    },
+
+    autnenticationTemplate:function(){
+
+        var _template = [
+            '<div class="videoClass newItemWrap {body:this.checkForData}">',
+            '<div class="newsHeader">',
+            '<div class="authorPic">' +
+            '<img src="{authorImage}">' +
+            '{postType:this.getArticleSourceType(values.isPremium)}',
+            '</div>',
+            '<div class="authorPic">' +
+            '<img src="./resources/images/defaultProfilePic.png">' +
+            '{postType:this.getArticleSourceType(values.isPremium)}',
+            '</div>',
+
+            '<div class="articleWrap">' +
+            '<div class="authorWrapper">',
+            '<span class="authorName">{authorName}</span>',
+            '<span>, {trackName}</span>',
+            '<span>, {raceNumber}</span>',
+            '<tpl if="eventTitle">',
+                '<span class="eventTitle"> - {eventTitle}</span>',
+            '</tpl>',
+            '<span class="newsDate">Posted : {postDate:this.changeDateformat}</span>',
+            '</div>',
+
+            '</div>',
+            '</div>',
+
+            '<span class="newsTitle">{title}</span>',
+            '<tpl if= "flagFirstClick">',
+            '<div class="newsWrap mainWrap expand">',
+            '<tpl else>',
+            '<div class="newsWrap mainWrap">',
+            '</tpl>',
+            '<div class="newsWrap">',
+            '<div class="articleContent teaser"><p>{teaser}</p></div>',
+            '<tpl if="body">',
+            '<div class="articleContent bodyContent">{body}</div>',
+            '</tpl>',
+            '</div>',
+            '<tpl if="photo && postType !== \'News\'"> ',
+            '<div class="content photo"><img src="{photo}"></div>',
+            '</tpl>',
+            '<tpl if ="videoId && videoLink">',
+            '<div class="content mediaContent"><div class="playIcon" id="playIcon#<{videoId}#<{videoLink}"></div>',
+            '<img src="{posterImage}">',
+            '</div>',
+            '</tpl>',
+            '{body:this.isReadFullEnabled(values)}',
+            '</div>',
+            '<tpl if="!loggedIn && isPremium && postType !== \'News\'">',
+            '<div class="drfPlusOffers drfPlusOffersNotSub ">',
+            '<div class="useDRF">',
+            '<h3>Already have an account?</h3>',
+            '<div class="inlineLoginWrap"> ',
+            '<span id="loginBtnInline">Log In to DRF.com</span>',
+            '</div>',
+            '<div class="createNewAccount">',
+            '<div>Don&#39;t have an account?</div>',
+            '<span class="plusPremium" id="drfPlusPremium"> Click here to create one. </span>',
+            '</div>',
+            '</div>',
+            '</div>',
+            '</tpl>',
+            '<tpl if="loggedIn && isPremium && !subscribed && postType !== \'News\' ">',
+            '<div class="drfPlusOffers drfPlusOffersNotSub ">',
+            '<div class="NotDrfPlusMessage">This content is not displaying because you are currently not a <i id="beyerSubscription"></i> member. <span id="NotDrfPlusMessage">JOIN NOW!</span></div>'+
+            '</div>',
+            '</tpl>',
+            '</div>'
+
+
+        ].join("");
+        return new Ext.XTemplate(_template, {
+
+            checkIfVimeo: function(videoLink){
+                if(videoLink.indexOf('vimeo') > -1)
+                    return true;
+                else
+                    return false;
+            },
+            checkIfYoutube: function(videoLink){
+                if(videoLink.indexOf('youtube') > -1 || videoLink.indexOf('youtu.be') > -1)
+                    return true;
+                else
+                    return false;
+            },
+
+            getArticleSourceType : function(sourceType, isPremium){
+                if(sourceType === "Live") {
+                    if(!isPremium) {
+                        return '<span class="nuggetsSource drflive"></span>';
+                    }
+                    return '<span class="nuggetsSource drfLivePostPremium"></span>';
+                } else if(sourceType === "News"){
+                    if(!isPremium) {
+                        return '<span class="nuggetsSource drfNewsNonPremium"></span>';
+                    }
+                    return '<span class="nuggetsSource drfnews"></span>';
+                }
+
+            },
+
+            checkForData : function(body){
+                if(body != null && body.trim() != ''){
+                    if(body.trim().length <= 150)
+                        return 'contentTrue expand';
+                    else
+                        return 'contentTrue' ;
+                }else{
+                    return '';
+                }
+            },
+
+
+            isReadFullEnabled : function(body,values){
+                if(body != null && body.trim() != '' && values.postType ==="Live" ){
+                    return  '<span id="readFullArticle" class="readMoreLess">Read <span class="more">More</span><span class="less">Less</span></span>';
+                }else if(values.postType ==="News"){
+                    var url = '<span  class="readMoreLess">Read More</span>';
+                    url = url.link(values.articleUrl);
+                    return url;
+                } else {
+                    return '';
+                }
+
+            },
+
+
+            changeDateformat: function(timestamp ){
+                var SECOND_MILLIS = 1000;
+                var  MINUTE_MILLIS = 60 * SECOND_MILLIS;
+                var HOUR_MILLIS = 60 * MINUTE_MILLIS;
+                var DAY_MILLIS = 24 * HOUR_MILLIS;
+                var now = new Date().getTime();
+                var postDate = new Date(timestamp);
+                var postTime = postDate.getTime();
+                var difference = (now - postTime);
+
+                var time= Ext.Date.format(new Date(timestamp), 'M d, Y, h');
+                var timeExt =    ":" + ("0" + postDate.getMinutes()).slice(-2)  + " " + Ext.Date.format(postDate, 'A');
+                var originalTime = time + timeExt;
+
+                if (difference < MINUTE_MILLIS) {
+                    return "few secs ago";
+                } else if (difference < 2 * MINUTE_MILLIS) {
+                    return "1 min ago";
+                } else if (difference < 50 * MINUTE_MILLIS) {
+                    return Math.floor(difference / MINUTE_MILLIS) + " mins ago";
+                } else if (difference < 90 * MINUTE_MILLIS) {
+                    return "1 hr ago";
+                } else if (difference < 24 * HOUR_MILLIS) {
+                    return Math.floor(difference / HOUR_MILLIS) + " hrs ago";
+                }else{
+                    return originalTime;
+                }
+
+            }
+
+
+        });
+    }
+
+
+
+
+
+})

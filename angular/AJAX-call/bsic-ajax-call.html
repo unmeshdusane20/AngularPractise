@@ -1,0 +1,46 @@
+<!--
+Author : Unmesh Dusane
+This file is used to send ajax request
+
+$http object used to make ajax call
+$http.get() return a promise object . It has success () and error() function.
+$http.get(url,config) , $http.post(url,dta,config) , $http.put(url,data,config)
+$http.delete(url,config) , $http.head(url,config)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<div ng-controller="ClickController">
+    <button ng-click="myData.clickFun(item,$event)">Ajax Click Me</button>
+    <button ng-mousedown="mouseDown()">mouse down</button>
+    <button ng-mouseleave="mouseLeave()">Mouse Leave</button>
+    <button ng-mouseenter="mouseEnter()">Mouse enter</button>
+    <button ng-mousemove="mouseMove()">Mouse Move</button>
+
+
+
+</div>
+
+<script type="text/javascript">
+    var module = angular.module("myapp",[]);
+    module.controller("ClickController",function($scope,$http){
+        $scope.mydata={};
+        $scope.myData.clickFun=function(item,event){
+            var getData = $http.get("json-test-data.xml");
+
+            getData.success(function(data,status,header,config){
+                $scope.myData.fromServerData = data.title;
+            });
+            getData.error(function(data,status,header,config){
+                alert("failed ajax");
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

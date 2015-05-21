@@ -1,0 +1,53 @@
+<!--
+Author : Unmesh Dusane
+
+filter is used to add condition
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<div ng-controller="repeatController">
+    <h4>ng-repeat directive</h4>
+
+
+    <div>
+        <h4>Filter to ignore pune city</h4>
+        <div ng-repeat="item in myData.items | filter:itemFilter">
+            <span>Name: {{ item.name | uppercase}}</span>
+            <span>City: {{ item.city | limitTo: 3 | lowercase }}</span>
+        </div>
+        <hr>
+    <h4>display all records</h4>
+        <div ng-repeat="item in myData.items" >
+            <span>Name: {{ item.name }}</span>
+            <span>City: {{ item.city }}</span>
+        </div>
+        <div>{{ item.length}}</div>
+
+    </div>
+
+
+
+</div>
+<script type="text/javascript">
+    angular.module("myapp",[]).controller("repeatController",function($scope){
+        $scope.myData = {};
+        $scope.myData.searchText = '';
+        $scope.myData.items =[ {name:"Unmesh",city:"jalgaon"},{name:"Dusane",city:"Pune"},{name:"Unmesh",city:"jalgaon"},{name:"Dusane",city:"Pune"}];
+        $scope.myData.getItem = function(){
+            return this.items;
+        };
+        $scope.itemFilter = function(item){
+            if(item.city == "Pune") return false;
+            else
+            return true;
+        }
+    });
+</script>
+
+</body>
+</html>

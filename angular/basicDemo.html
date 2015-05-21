@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+     <link rel="stylesheet"  href="css/style.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script type="text/javascript" src="js/basicDemo.js"></script>
+</head>
+<body ng-app="F1FeederApp" ng-controller="driversController">
+ <table>
+ 	<thead>
+ 		<tr>
+ 			<th colspan="4">Drivers Standings</th>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<tr ng-repeat="driver in driversList">
+ 			<td>{{ $index + 1}}</td>
+ 			<td>
+ 				<img src="img/flags/{{driver.Driver.nationality}}.png" />
+ 				{{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}
+ 			</td>
+ 			</td>{{driver.Constructors[0].name}}</td>	
+ 			<td>{{driver.points}}</td>
+ 		</tr>	
+ 	</tbody>
+ </table>
+
+</body>
+</html>

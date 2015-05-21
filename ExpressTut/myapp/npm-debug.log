@@ -1,0 +1,72 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@1.3.21
+3 info using node@v0.10.24
+4 verbose node symlink C:\Program Files (x86)\nodejs\\node.exe
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ 'D:\\practise\\ExpressTut\\myapp',
+6 verbose install   [ 'body-parser',
+6 verbose install     'cookie-parser',
+6 verbose install     'debug',
+6 verbose install     'express',
+6 verbose install     'jade',
+6 verbose install     'morgan',
+6 verbose install     'serve-favicon',
+6 verbose install     'mongodb',
+6 verbose install     'bootstrap' ] ]
+7 info preinstall myapp@0.0.0
+8 verbose readDependencies using package.json deps
+9 verbose already installed skipping body-parser@~1.12.0 D:\practise\ExpressTut\myapp
+10 verbose already installed skipping cookie-parser@~1.3.4 D:\practise\ExpressTut\myapp
+11 verbose already installed skipping debug@~2.1.1 D:\practise\ExpressTut\myapp
+12 verbose already installed skipping express@~4.12.2 D:\practise\ExpressTut\myapp
+13 verbose already installed skipping jade@~1.9.2 D:\practise\ExpressTut\myapp
+14 verbose already installed skipping morgan@~1.5.1 D:\practise\ExpressTut\myapp
+15 verbose already installed skipping serve-favicon@~2.2.0 D:\practise\ExpressTut\myapp
+16 verbose already installed skipping mongodb@* D:\practise\ExpressTut\myapp
+17 verbose already installed skipping bootstrap@* D:\practise\ExpressTut\myapp
+18 silly resolved []
+19 info build D:\practise\ExpressTut\myapp
+20 verbose linkStuff [ false, false, false, 'D:\\practise\\ExpressTut' ]
+21 info linkStuff myapp@0.0.0
+22 verbose linkBins myapp@0.0.0
+23 verbose linkMans myapp@0.0.0
+24 verbose rebuildBundles myapp@0.0.0
+25 verbose rebuildBundles [ '.bin',
+25 verbose rebuildBundles   'body-parser',
+25 verbose rebuildBundles   'bootstrap',
+25 verbose rebuildBundles   'cookie-parser',
+25 verbose rebuildBundles   'debug',
+25 verbose rebuildBundles   'express',
+25 verbose rebuildBundles   'jade',
+25 verbose rebuildBundles   'mongodb',
+25 verbose rebuildBundles   'mongoskin',
+25 verbose rebuildBundles   'morgan',
+25 verbose rebuildBundles   'serve-favicon' ]
+26 verbose rebuild bundle D:\practise\ExpressTut\myapp\node_modules\mongoskin
+27 info build D:\practise\ExpressTut\myapp\node_modules\mongoskin
+28 info preinstall mongoskin@1.4.13
+29 verbose linkStuff [ false,
+29 verbose linkStuff   false,
+29 verbose linkStuff   false,
+29 verbose linkStuff   'D:\\practise\\ExpressTut\\myapp\\node_modules' ]
+30 info linkStuff mongoskin@1.4.13
+31 verbose linkBins mongoskin@1.4.13
+32 verbose linkMans mongoskin@1.4.13
+33 verbose rebuildBundles mongoskin@1.4.13
+34 info install mongoskin@1.4.13
+35 info postinstall mongoskin@1.4.13
+36 info install myapp@0.0.0
+37 info postinstall myapp@0.0.0
+38 info prepublish myapp@0.0.0
+39 error peerinvalid The package mongodb does not satisfy its siblings' peerDependencies requirements!
+39 error peerinvalid Peer mongoskin@1.4.13 wants mongodb@~1.4
+40 error System Windows_NT 6.2.9200
+41 error command "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+42 error cwd D:\practise\ExpressTut\myapp
+43 error node -v v0.10.24
+44 error npm -v 1.3.21
+45 error code EPEERINVALID
+46 verbose exit [ 1, true ]

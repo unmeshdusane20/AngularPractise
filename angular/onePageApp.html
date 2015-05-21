@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Single page web app using Angularjs</title>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js">   </script>
+    <script src="js/onePage.js"></script>
+</head>
+<body data-ng-app="single-page">
+    <div data-ng-controller="cfgController">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#/About">about</a></li>
+            </ul>
+        </nav>
+        <div ng-view>
+            <!-- this div will load template depending upong route.
+            -->
+
+        </div>
+    </div>
+</body>

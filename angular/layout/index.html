@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+ <html >
+     <head>
+         <!-- load bootstrap and fontawesome via CDN -->
+         <link rel="stylesheet" href="../css/bootstrap.min.css" />
+       <!--  <link rel="stylesheet" href="netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />-->
+          <!-- load angular via CDN -->
+         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+<!--         <script src="../js/custom-script.js"></script>-->
+    </head>
+     <body ng-app="sampleApp">
+
+     <a href="#/route1">Route 1</a><br/>
+     <a href="#/route2">Route 2</a><br/>
+
+
+     <div ng-view></div>
+
+     <script>
+         var module = angular.module("sampleApp", ['ngRoute']);
+
+         module.config(['$routeProvider',
+             function($routeProvider) {
+                 $routeProvider.
+                         when('/route1', {
+                             templateUrl: 'angular-route.template1.html',
+                             controller: 'RouteController'
+                         }).
+                         when('/route2', {
+                             templateUrl: 'angular-route.template2.html',
+                             controller: 'RouteController'
+                         }).
+                         otherwise({
+                             redirectTo: '/'
+                         });
+             }]);
+
+         module.controller("RouteController", function($scope) {
+
+         })
+     </script>
+     </body>
+</html>

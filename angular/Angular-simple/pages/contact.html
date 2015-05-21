@@ -1,0 +1,49 @@
+<!-- contact.html -->
+
+<div class="container text-center">
+	<h1>Contact Page</h1>
+	<p> {{ message }}</p>	
+
+
+	
+  <!-- SHOW ERROR/SUCCESS MESSAGES -->
+  <div id="messages"></div>
+
+	<div class="col-md-4 col-md-offset-4 text-left homeForm " >
+
+		<form method="POST" ng-submit="processForm()" novalidate>
+			<!-- user name -->
+			<div class="msgSuccess bg-success" ng-show="formSuccess">{{ formSuccess }}</div>
+			<div id="name-group" class="form-group">
+				<label>Name</label>	
+				<input type="text" name="name"	class="form-control" placeholder="UserName" ng-model="formData.name" ng-minlength="3" ng-maxlength="10">
+				<div class="bg-danger msgError" ng-show="nameRequired">{{ nameRequired }}</div>
+			</div>
+
+			<!-- password -->
+			<div id="password-group" class="form-group">
+				<label>Password</label>	
+				<input type="password" name="password"	class="form-control" placeholder="Password" ng-model="formData.pass">
+				<div class="bg-danger msgError" ng-show="passRequired">{{ passRequired }}</div>
+			</div>
+
+
+			<div id="selectGroup" class="form-group">
+				<label>City</label>	
+				<select class="form-control" ng-model="formData.selectedCity">
+							<option value="">Please Select City</option>
+							<option ng-repeat="city1 in cities" value="{{ city1.value }}">{{ city1.label }}</option>
+				</select>
+				<div class="bg-danger msgError txt-left" ng-show="cityRequired">{{ cityRequired }}</div>
+			</div>	
+
+
+
+			<button type="submit" class="btn btn-success btn-lg btn-block" ng-disabled="userForm.$invalid">
+				<span class="glyphicon glyphicon-flash"></span>Submit!
+			</button>
+		</form>
+
+		
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- <link rel="stylesheet"  href="css/style.css" type="text/css" />-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script type="text/javascript" src="js/routing.js"></script>
+</head>
+<body ng-app="sampleApp">
+    <div class="container">
+        <div>
+            <ul class="nav">
+                <li><a href="#AddNewOrder">Add New Order</a></li>
+                <li><a href="#ShowOrders">Show Order</a></li>
+            </ul>
+        </div>
+        <div class="orderView">
+            <div ng-view> </div>
+        </div>
+    </div>
+</body>
+</html>

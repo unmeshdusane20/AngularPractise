@@ -1,0 +1,32 @@
+<!--
+Author : Unmesh Dusane
+This file is used to add or remove HTML element from DOM based on data in model
+This directive will work like switch case
+ng-switch on
+ng-switch-when
+ng-switch-default
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+    <div ng-controller="SwitchController">
+        <div ng-switch on="myData.switch">
+            <div ng-switch-when="1">Show when case 1 is passed</div>
+            <div ng-switch-when="2">Show when case 2 is passed</div>
+            <div ng-switch-when="3">Show when case 3 is passed</div>
+            <div ng-switch-default>Show when case is not match</div>
+        </div>
+    </div>
+<script type="text/javascript">
+    angular.module("myapp",[]).controller("SwitchController",function($scope){
+        $scope.myData = {};
+        $scope.myData.switch = 6;
+    });
+</script>
+
+</body>
+</html>

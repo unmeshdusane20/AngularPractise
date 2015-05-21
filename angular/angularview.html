@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+
+</head>
+<body ng-app="myapp">
+    <div ng-controller="MyController">
+        <span>{{ myData.textf() }}</span>
+        <span ng-bind-html-unsafe="myData.textf()"></span> <!-- for avoiding sql injection attack -->
+    </div>
+<script type="text/javascript">
+    angular.module("myapp",[]).controller("MyController",function($scope){
+        $scope.myData = {};
+        $scope.myData.textf = function(){ return "A text from a function";};
+    });
+
+</script>
+
+</body>
+</html>

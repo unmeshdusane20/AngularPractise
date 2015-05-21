@@ -1,0 +1,56 @@
+<!--
+Author : Unmesh Dusane
+This directive is used to repeat or iterate over a collection of items and generate html from it
+This directive will work like switch case
+ng-switch on
+ng-switch-when
+ng-switch-default
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<div ng-controller="repeatController">
+    <h4>ng-repeat directive</h4>
+    <input type="text" ng-model="myData.searchText" placeholder="search something"/>
+    <span >{{myData.searchText }}</span>
+    <div>
+
+        <div ng-repeat="item in myData.items | filter:myData.searchText">
+            <span>Name: {{ item.name }}</span>
+            <span>City: {{ item.city }}</span>
+        </div>
+
+    </div>
+
+    <hr>
+    <!-- using name and value  -->
+    <div>
+        <h4>Displyaing array using index</h4>
+        <div ng-repeat="(name,value) in myData.items | filter:myData.searchText ">
+            <span>{{name }} = {{ value }}</span>
+        </div>
+    </div>
+    <hr>
+    <h4>Variable that ca n be used with ng-repeat directive $index , $last , $first , $middle etc</h4>
+    <ol>
+        <li ng-repeat-start="(name, value) in myData.items">{{name}}</li>
+        <li ng-repeat-end>{{value}}</li>
+    </ol>
+</div>
+<script type="text/javascript">
+    angular.module("myapp",[]).controller("repeatController",function($scope){
+        $scope.myData = {};
+        $scope.myData.searchText = '';
+        $scope.myData.items =[ {name:"Unmesh",city:"jalgaon"},{name:"Dusane",city:"Pune"},{name:"Unmesh",city:"jalgaon"},{name:"Dusane",city:"Pune"}];
+        $scope.myData.getItem = function(){
+            return this.items;
+        };
+    });
+</script>
+
+</body>
+</html>

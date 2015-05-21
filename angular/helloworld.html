@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+
+</head>
+<body ng-app="myapp">
+    <div ng-controller="HelloController">
+        <!--<h2>Hello {{ helloTo.Name }}</h2>-->
+        <div ng-repeat="hello as helloTo">
+            {{hello.Name}}<br>{{hello.City}}<br>{{hello.Mob}}
+        </div>
+       <!-- Your Contact No is : {{ helloTo.Mob}}-->
+    </div>
+    <script type="text/javascript">
+        var myApp = angular.module("myapp",[]);
+        myApp.controller("HelloController",function($scope){
+            $scope.helloTo=[{Name:'unmesh',City:'Jalgaon',Mob:'9028895240'},{Name:'unmesh D',City:'Jalgaon D',Mob:'9028895240sadasd'}];
+           /* $scope.helloTo[0].Name  =" Unmesh ";
+            $scope.helloTo[0].City  =" Jalgaon ";
+
+            $scope.helloTo[1].Name  =" Unmesh Dusane ";
+            $scope.helloTo[1].City  =" Pune ";
+
+            $scope.helloTo[2].Name  =" Unmesh R Dusane  ";
+            $scope.helloTo[2].City  =" Bhusawal ";*/
+        });
+    </script>
+
+</body>
+</html>

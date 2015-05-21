@@ -1,0 +1,28 @@
+<!--
+Author : Unmesh Dusane
+This file is used to show or hide depending on condition or variable state of data in model
+user ng-show or ng-hide
+ng-show will show element only if true and hide if value is false
+ng-hide will show element only if value if false and show if value is true
+it works like display:none or display:block as like css
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+<div ng-controller="ShowController">
+  <div ng-show="myData.show">Show  Data</div>
+  <div ng-hide="myData.show">hide  Data</div>
+</div>
+<script type="text/javascript">
+    angular.module("myapp",[]).controller("ShowController",function($scope){
+        $scope.myData = {};
+        $scope.myData.show = false;
+    });
+</script>
+
+</body>
+</html>

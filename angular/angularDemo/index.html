@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <title>Angular Demo</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controller.js"></script>
+
+</head>
+<body ng-app="empListApp">
+<header>
+
+</header>
+<div class="Wrapper">
+    <div class="container">
+        <div class="row" ng-controller="empSearchController">
+            <div class="span4">
+                <form>
+                    <label class="control-label">Select Technology</label>
+                    <select data-ng-model="selectTech">
+                        <option value="">Choose Technology</option>
+                        <option value="Front End">Front End</option>
+                        <option value="PHP">PHP</option>
+                        <option value="QA">QA</option>
+                    </select>
+                </form>
+
+                <form class="form-horizontal">
+                    <input type="text" placeholder="Search " data-ng-model="empSearch" />
+                    <input type="button" value="Search" data-ng-click="searchEmployee()">
+                </form>
+            </div>
+            <div class="span8">
+
+                <div class="listWrapper">
+                    <ul class="searchList">
+                        <li data-ng-repeat="emp in empObject | filter:selectTech | filter:empSearch" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" class="clearfix">
+                            <img src="images/slider1.jpg" alt="userImage" class="span3"/>
+                            <div class="userInfo span5">
+                                <h3><span>Name:</span> {{ emp.fname + " " +emp.lname }}</h3>
+                                <div class="clearfix">
+                                    <div class="pull-left"><span>Emp No:</span> {{ emp.empID }}</div>
+                                    <div class="pull-right"><span>Contact No:</span> {{ emp.ContactNo }}</div>
+                                </div>
+                                <p><span>Techonolgy:</span> {{ emp.technology }}</p>
+                                <p></p>
+                            </div>
+                        </li>
+                        <!--<li class="clearfix">
+                            <img src="images/slider1.jpg" alt="userImage" class="span3"/>
+                            <div class="userInfo span5">
+                                <h3><span>Name:</span> Unmesh Dusnae</h3>
+                                <div class="clearfix">
+                                    <div class="pull-left"><span>Emp No:</span> WL144</div>
+                                    <div class="pull-right"><span>Contact No:</span> 9403744024</div>
+                                </div>
+                                <p><span>Techonolgy:</span> Front End</p>
+                                <p></p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="images/slider1.jpg" alt="userImage" class="span3"/>
+                            <div class="userInfo span5">
+                                <h3><span>Name:</span> Unmesh Dusnae</h3>
+                                <div class="clearfix">
+                                    <div class="pull-left"><span>Emp No:</span> WL144</div>
+                                    <div class="pull-right"><span>Contact No:</span> 9403744024</div>
+                                </div>
+                                <p><span>Techonolgy:</span> Front End</p>
+                                <p></p>
+                            </div>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+
+</footer>
+</body>
+</html>

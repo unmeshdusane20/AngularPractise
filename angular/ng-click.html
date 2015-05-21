@@ -1,0 +1,45 @@
+<!--
+Author : Unmesh Dusane
+This file is used to show ng-click directive
+ng-click
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+    <div ng-controller="ClickController">
+        <button ng-click="clickFun()">Click Me</button>
+        <button ng-mousedown="mouseDown()">mouse down</button>
+        <button ng-mouseleave="mouseLeave()">Mouse Leave</button>
+        <button ng-mouseenter="mouseEnter()">Mouse enter</button>
+        <button ng-mousemove="mouseMove()">Mouse Move</button>
+    </div>
+<script type="text/javascript">
+   var module = angular.module("myapp",[]);
+    module.controller("ClickController",function($scope){
+        $scope.mydata={};
+        $scope.clickFun = function(){
+            alert("inside click function");
+        }
+        $scope.mouseDown = function(){
+            alert("mouse down");
+        }
+
+        $scope.mouseEnter = function(){
+            alert("mouse enter");
+        }
+        $scope.mouseLeave = function(){
+            alert("mouse leave");
+        }
+        $scope.mouseMove = function(){
+            alert("mouse move");
+        }
+    });
+</script>
+
+</body>
+</html>
