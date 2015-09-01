@@ -18,14 +18,13 @@ $(document).ready(function(){
 		if(scroll == totSlide) {
 			scroll = 0;
 		}
-		var tot = -(parentWrapWidth*scroll);
-		console.log(tot);
+		var tot = -(parentWrapWidth*scroll);		
 		$(".sliderWrapper ul").css('left',-(parentWrapWidth*scroll));
 	}
 	function slideLeft(){
 		scroll--;
-		if(scroll == -1){ scroll = totalSlides-1; }
-		$('.sliderWrapper ul').css('left', -(sliderWidth*pos)); 		
+		if(scroll == -1){ scroll = totSlide-1; }
+		$('.sliderWrapper ul').css('left', -(parentWrapWidth*scroll)); 		
 	}	
 	initSlider();	
 	$("#next").on("click",function(e){			
@@ -34,5 +33,5 @@ $(document).ready(function(){
 	$("#previous").on("click",function(e){
 			slideRight();		
 	});
-	setInterval(slideRight,3000);	
+	setInterval(slideRight,5000);	
 });
